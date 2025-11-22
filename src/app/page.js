@@ -1,66 +1,39 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import LockedContent from '@/components/LockedContent';
+import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className={styles.hub}>
+      <section className={styles.hero}>
+        <div className="container">
+          <h1 className={styles.heroTitle}>
+            The Ultimate <span className={styles.highlight}>Automotive Hub</span>
+          </h1>
+          <p className={styles.heroSubtitle}>
+            Buy, sell, trade, and connect. The redline is just the beginning.
           </p>
+          <div className={styles.heroActions}>
+            <Link href="/groups" className="btn btn-primary">Join a Crew</Link>
+            <Link href="/map" className="btn btn-secondary">Find Meets</Link>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
+
+      <section className={`container ${styles.categories}`}>
+        <h2 className="section-title">Marketplace</h2>
+        <LockedContent title="Marketplace Locked">
+          <div className={styles.grid}>
+            {['Cars', 'Parts', 'Paints', 'Mechanics'].map((item) => (
+              <div key={item} className="card">
+                <div className={styles.cardIcon}></div>
+                <h3>{item}</h3>
+                <p>Browse the best {item.toLowerCase()} in your area.</p>
+              </div>
+            ))}
+          </div>
+        </LockedContent>
+      </section>
     </div>
   );
 }
